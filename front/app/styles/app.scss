@@ -1,0 +1,171 @@
+@import "plugins/plugins";
+@import "base/base";
+@import "modules/modules";
+@import "layouts/layouts";
+
+.pace .pace-progress {
+  background: #3FA9F5;
+  position: fixed;
+  z-index: 8000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 5px;
+}
+
+footer {
+    float: left;
+    background: #2980b9;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+}
+
+
+.input-error {
+	display: none;
+}
+
+.text-right {
+	text-align: right;
+}
+
+
+.card-headers {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 60px;
+    text-align: center;
+  
+}
+
+.card {
+
+	&.-brief {
+		.card-meta {
+		
+			font-weight: 600;
+
+			time {
+				font-size: 16px;
+			}
+		}
+
+		a {
+			opacity: 0.6;
+		}
+
+	}
+
+	&.-detail {
+.card-meta {
+		
+		font-weight: 600; 
+
+
+		time {
+			font-size: 22px;
+		}
+		
+	}
+
+	}
+
+}
+
+
+.modal-welcome {
+    position: absolute;
+    z-index: 1000;
+    top: 25%;
+    width: 50%;
+    padding: 2%;
+    text-align: left;
+    -webkit-transition: all 1.4s cubic-bezier(0.7, 0, 0.3, 1);
+    -moz-transition: all 1.4s cubic-bezier(0.7, 0, 0.3, 1);
+    transition: all 1.4s cubic-bezier(0.7, 0, 0.3, 1);
+    right: 5%;
+    background: rgba(255,255,255,0.9);
+    max-width: 500px;
+
+    @include media($mobile) {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.6);
+        position: relative;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        padding: 30px;
+    }
+
+	img {
+		margin: 0 auto;
+		display: none;
+	}
+
+    h1 {
+        margin-top: 0;
+    }
+}
+
+.pixel-map.argentina + .modal-welcome {
+	color: #888;
+    top: 180px;
+    width: 400px;
+}
+
+.pixel-map.chile + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.uruguay + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.brasil + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.paraguay + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.bolivia + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.peru + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.colombia + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.ecuador + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}
+
+.pixel-map.venezuela + .modal-welcome {
+	color: #fff;
+    top: 180px;	
+    width: 400px;
+}

@@ -1,0 +1,139 @@
+<div class="country {{election.country.componentName}}">
+	<div class="country-container">
+		<div class="country-detail">
+			<div class="detail-header">
+				<h1>Elección {{election.level.name}} en {{election.country.name}}</h1>
+				<h3>{{election.name}}</h3>
+				<i>{{election.instance.name}} {{election.category.name}} y {{election.participation.name}}s 
+				del <time>{{election.fixDate}}</time></i>
+
+				
+				<div class="banks">
+					{{#if election.banks}}
+						<h6>Bancas renovadas</h6>
+						<span>{{election.banks}}</span>
+						<small>{{election.cameraType.name}} </small>
+					{{/if}}
+					{{#if isReferendum}}
+						{{#if election.vinculated}}
+							Vinculada
+						{{else}}
+							No Vinculada
+						{{/if}}
+					{{/if}}
+				</div>
+				
+			</div>
+
+			<div class="detail-content">
+				<div class="results">
+
+					<div class="data">
+						{{#if election.electors}}
+						<div class="data-item" style="width: 100%;">
+							<span>{{format-number election.electors format="0.0"}}</span>
+							<h6>Electores</h6>
+						</div>
+						{{/if}}
+
+						<div class="data-item">
+							{{#if election.votersPercent}}
+								<span>{{election.votersPercent}}%</span>
+								<small>{{format-number election.voters format="0.0"}}</small>
+							{{else}}
+								<span>{{format-number election.voters format="0.0"}}</span>
+							{{/if}}
+							<h6>Votantes</h6>
+						</div>
+
+						{{#if election.abstensPercent}}
+							<div class="data-item">
+								<span>{{election.abstensPercent}}%</span>
+								<small>{{format-number election.abstens format="0.0"}}</small>
+								<h6>Abstenciones</h6>
+							</div>
+						{{/if}}
+
+						<div class="data-item">
+							<span>{{election.nullsPercent}}%</span>
+							<h6>Nulos</h6>
+						</div>
+
+						<div class="data-item">
+							{{#if election.validsPercent}}
+								<span>{{election.validsPercent}}%</span>
+								<small>{{format-number election.valids format="0.0"}}</small>
+							{{else}}
+								<span>{{format-number election.valids format="0.0"}}</span>
+							{{/if}}
+							<h6>Validos</h6>
+						</div>
+
+						<div class="data-item">
+							{{#if election.positivesPercent}}
+								<span>{{election.positivesPercent}}%</span>
+								<small>{{format-number election.positives format="0.0"}}</small>
+							{{else}}
+								<span>{{format-number election.positives format="0.0"}}</span>
+							{{/if}}
+							<h6>Positivos</h6>
+						</div>
+
+						<div class="data-item">
+							{{#if election.blankPercent}}
+								<span>{{election.blankPercent}}%</span>
+								<small>{{format-number election.blank format="0.0"}}</small>
+							{{else}}
+								<span>{{format-number election.blank format="0.0"}}</span>
+							{{/if}}
+							<h6>Blancos</h6>
+						</div>
+
+						{{#if election.unchecked}}			
+						<div class="data-item">
+							<label for="">Sin marcar</label> {{election.unchecked}} ({{election.uncheckedPercent}})
+						</div>				
+						{{/if}}
+					</div>
+
+
+					
+					<div class="formula-detail">
+					{{#each election.formulasSorted as |formula|}}
+					      {{#if election.isEjecutive}}
+					        {{partial 'partials/formula/ejecutive/detail'}}
+					      {{/if}}
+					      {{#if election.isLegislative}}
+					        {{partial 'partials/formula/legislative/detail'}}
+					      {{/if}}
+					      {{#if election.isReferendum}}
+					      	{{partial 'partials/formula/referendum/detail'}}
+					      {{/if}}			
+					{{/each}}
+					</div>
+
+				</div>
+
+				<aside>
+					<div class="formula-brief">
+					{{#each election.formulasSorted as |formula|}}
+					      {{#if election.isEjecutive}}
+					        {{partial 'partials/formula/ejecutive/brief'}}
+					      {{/if}}
+					{{/each}}
+					</div>
+
+					{{#if election.history}}
+					<div class="reference">
+						<h4>Referencia</h4>
+						<p>{{election.history}}</p>
+					</div>
+					{{/if}}
+
+					
+				</aside>
+			</div>
+
+		</div>
+	</div>
+</div>

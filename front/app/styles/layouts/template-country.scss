@@ -1,0 +1,495 @@
+.country {
+	@include outer-container(100%);
+	background: #f7f7f7;
+	font-family: 'PT Sans', sans-serif;
+
+	.country-container {
+		display: block;
+		margin: 0 auto;
+		-webkit-transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		-moz-transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		background: #fff;
+		max-width: 1200px;
+		
+		@include media($tablet) {
+			max-width: 100%;
+			margin: 0;
+			width: 100%;
+			padding: 0 15px;
+		}
+
+	}
+}
+
+.country-nav {
+	padding: 15px;
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+
+	h1 {
+		margin: 0;
+
+		span {
+			color: #999;
+			font-size: 19px;
+			float: left;
+			line-height: 3px;
+			margin: 15px;
+		}
+	}
+}
+
+.country-filter {
+    padding: 35px 0 0 0;
+    background: #fff;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+
+	li {
+		@include span-columns(1 of 6);
+		cursor: pointer;
+		text-align: center;
+		min-height: 60px;
+
+		&.active {
+			font-weight: bold;
+		}
+
+		h5 {
+			margin: 0;
+			font-size: 19px;
+		}
+	}
+}
+
+.country-detail {
+	h1 {
+		margin: 0;
+	}
+
+	.detail-header {
+		margin: 0;
+		padding: 15px;
+		background: #fff;
+		border-bottom: 1px solid #ddd;
+		position: relative;
+	}
+
+	.banks {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		text-align: right;
+		font-size: 21px;
+    	font-weight: 600;
+
+		h6 {
+			margin: 0;
+		}
+	}
+}
+
+.country-content,
+.detail-content,
+.formula-container {
+	@include span-columns(12);
+	padding: 25px;
+}
+
+.country-content,
+.detail-content {
+	background: #fff;
+}
+
+
+
+
+.reference {
+    float: left;
+    width: 100%;
+    padding-left: 0;
+    margin-top: 50px;
+
+    h4 {
+    	margin: 0 0 5px 0;
+    }
+
+    p {
+		margin: 0;
+		font-size: 17px;
+		color: #555;
+		line-height: 31px;
+    }
+}
+
+.detail-content .data {
+	margin: 0;
+    float: left;
+    width: 100%;
+    padding-top: 25px;
+}
+
+.detail-content .data .data-item {
+	float: left;
+	display: block;
+	margin-right: 0;
+	width: 50%;
+	text-align: center;
+    min-height: 130px;
+    text-align: center;
+    border-bottom: 1px solid #efefef;
+    padding-top: 18px;
+
+	span {
+		display: block;
+		font-size: 40px;
+		font-weight: 100;
+	}
+
+	small {
+		display: block;	
+		font-size: 16px;
+	}
+
+	h6 {
+		margin: 0;
+	    font-size: 16px;
+    	font-weight: 600;
+	}
+}
+
+$mobile: new-breakpoint(max-width 768px 6);
+$tablet: new-breakpoint(max-width 992px 6);
+$desktop: new-breakpoint(max-width 1200px 12);
+$jumbo: new-breakpoint(min-width 1201px 12);
+
+.detail-content {
+	.results {
+		@include span-columns(8);
+	    padding-top: 25px;
+
+	      @include media($tablet) {
+			@include span-columns(6);
+		}
+	}
+
+	aside {
+		@include span-columns(4);
+
+		  @include media($tablet) {
+			@include span-columns(6);
+		}
+	}
+}
+
+.list-header {
+	@include span-columns(12);
+	font-weight: 600;
+	border-bottom: 2px solid #ffcb00;
+    color: #999;
+    padding: 5px;
+
+    &.-brief {
+		.item-title {
+		@include span-columns(6);
+		}
+		.item-content {
+			@include span-columns(6);
+
+			.item {
+				@include span-columns(6);
+			}
+		}
+	}
+}
+
+.country-item {
+	@include span-columns(12);
+    padding: 15px 5px;
+    border-bottom: 1px solid #eaeaea;
+
+	.item-title {
+		a {
+			margin: 0;
+			font-size: 22px;
+			font-weight: 600;
+			color: #3FA9F5;
+		}
+
+		p {
+			margin: 2px 0;
+		    font-style: italic;
+		}
+	}
+
+	.-banks, .-voters {
+	    font-size: 25px;
+	}
+
+	.-banks {
+
+		span {
+			display: block;
+		}
+
+		small {
+			display: block;
+			font-size: 16px;
+		}
+	}
+
+	.-date {
+    	font-style: italic;
+	}
+}
+
+
+.legislative-item, .ejecutive-item {
+	@include span-columns(12);
+	margin-top: 10px;
+	font-size: 15px;
+	color: #777;
+	border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+
+
+	.item-title {
+		@include span-columns(6);
+	}
+	.item-content {
+		@include span-columns(6);
+
+		.item {
+			@include span-columns(6);
+			float: right;
+		}
+	}
+}
+
+
+.item-title {
+	@include span-columns(4);
+
+	h5 {
+		font-size: 20px;
+		margin: 0;
+	}
+
+	p {
+		margin: 0 0;
+		font-style: italic;
+	}
+
+}
+
+.item-content {
+	@include span-columns(8);
+
+	.item {
+		@include span-columns(4);
+		text-align: right;
+
+		&:last-child {
+		}
+	}
+}
+
+.item {
+
+}
+
+
+aside {
+	.title {
+		margin: 0;
+		order: 0;
+		width: 100%;
+		font-family: 'PT Sans', sans-serif;
+		font-weight: 600;
+		color: #ffcb00;
+	}
+
+	.election-participation {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid #ddd;
+		margin: 15px 0px;
+
+		span {
+			color: #ffcb00;
+			font-size: 30px;
+		}
+
+		small {
+			align-self: flex-end;
+			margin: 5px;
+			font-size: 16px;
+		}
+	}
+}
+
+.formula-detail {
+	float: left; 
+	width: 100%;
+
+	.ejecutive-detail {
+		    float: left;
+    width: 100%;
+    border: 1px solid #ededed;
+    margin: 0 0 25px 0;
+    padding: 0 15px;
+
+
+		.item-percent {
+			text-align: right;
+		}
+
+		.brief-header {
+			position: relative;
+    min-height: 60px;
+    border-bottom: 1px solid #333;
+
+			.votes {
+				position: absolute;
+				right: 0;
+				top: 0;
+				font-size: 20px;
+				font-family: 'PT Sans Narrow';
+				font-weight: 600;
+				text-align: right;
+			}			
+
+			h5 {
+				margin: 15px 0 0 0;
+				font-size: 25px;
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+
+.candidate-item {
+    position: relative;
+    padding-left: 90px;
+
+    .image {
+    	position: absolute;
+    	top: 17px;
+    	left: 10px;
+    	width: 50px;
+    	overflow: hidden;
+    	border-radius: 50px;
+    	height: 50px;
+    }
+}
+
+
+.country {
+
+	&.pixel-bolivia {
+		.detail-content .data {
+			color: #2ecc71;
+		}
+
+		.country-item .item-title a {
+			color: #2ecc71;
+		}
+
+		.tabs-style-linemove nav li:last-child::before {
+			background: #2ecc71;
+		}
+	}
+
+	&.pixel-paraguay {
+		.detail-content .data {
+			color: #2980b9;
+		}
+
+		.country-item .item-title a {
+			color: #2980b9;
+		}
+
+		.list-header {
+			border-bottom: 2px solid #e74c3c;
+		}
+
+		.tabs-style-linemove nav li:last-child::before {
+			background: #2980b9;
+		}
+	}
+
+	&.pixel-chile {
+		.detail-content .data {
+			color: #2980b9;
+		}
+
+		.country-item .item-title a {
+			color: #2980b9;
+		}
+
+		.list-header {
+			border-bottom: 2px solid #e74c3c;
+		}
+
+		.tabs-style-linemove nav li:last-child::before {
+			background: #2980b9;
+		}
+	}
+
+	&.pixel-brasil {
+		.detail-content .data {
+			color: #2980b9;
+		}
+
+		.country-item .item-title a {
+			color: #2980b9;
+		}
+
+		.list-header {
+			border-bottom: 2px solid #2ecc71;
+		}
+
+		.tabs-style-linemove nav li:last-child::before {
+			background: #2980b9;
+		}
+	}
+
+	&.pixel-peru {
+		.detail-content .data {
+			color: #e74c3c;
+		}
+
+		.country-item .item-title a {
+			color: #e74c3c;
+		}
+
+		.list-header {
+			border-bottom: 2px solid #e74c3c;
+		}
+
+		.tabs-style-linemove nav li:last-child::before {
+			background: #e74c3c;
+		}
+	}
+
+	&.pixel-uruguay {
+		.detail-content .data {
+			color: #f1c40f;
+		}
+
+		.country-item .item-title a {
+			color: #f1c40f;
+		}
+
+		.list-header {
+			border-bottom: 2px solid #f1c40f;
+		}
+
+		.tabs-style-linemove nav li:last-child::before {
+			background: #f1c40f;
+		}
+	}
+
+}

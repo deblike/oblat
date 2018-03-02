@@ -1,0 +1,64 @@
+
+<fieldset>
+	<label>
+		Fuerza Politica
+		{{model-selector modelName='political-force' countryFilter=model.country.id value=formula.politicalForce labelPath="name" sigle=true}}
+	</label> 
+</fieldset>  
+
+<fieldset class="election-poll">
+	<label>
+		Votos
+	</label>
+	<div class="quantity">
+		{{input type="number" value=formula.votes}}
+	</div>
+	<div class="percent">
+		{{input type="text" value=formula.percent placeholder="Ingrese el porcentaje" pattern="\d+(,\d{2})?"}}
+	</div>
+</fieldset>   	
+
+<a {{action 'addCandidate' formula}} class="btn">Agregar Candidato</a>
+
+{{#each formula.candidates as |candidate|}}
+<fieldset class="candidates-poll"> 
+	<label class="charge">
+		Cargo
+		{{#if candidate.charge}}
+			<div>{{candidate.charge.name}} <a {{action 'removeCandidateCharge' candidate}}>X</a></div>
+		{{else}}
+			{{model-selector modelName='charge' value=candidate.charge optionLabelPath="content.name" }}
+		{{/if}}
+	</label>
+	<label class="candidate">
+		Candidato
+		{{model-finder modelName='candidate' countryFilter=model.country.id  list=candidate.candidate labelPath="name" sigle=true showPath="fullName"}}
+	</label>
+	<a {{action 'removeCandidate' formula candidate}}>X</a>
+</fieldset>  
+{{/each}}      
+
+<a {{action 'addProvince' formula}} class="btn">Agregar Provincia</a>
+<a {{action 'removeAllProvince' formula}} class="btn">Borrar todas las provincias</a>
+
+{{#each formula.provinceStatuses as |status|}}
+<fieldset class="province-poll"> 
+	<label>
+
+		{{#if status.isCustom}} 
+			{{model-selector modelName='province' countryFilter=model.country.id  list=status.province value=status.province optionLabelPath="content.name" }}
+		{{else}}
+			{{status.province.name}}
+		{{/if}}
+	</label>
+	<div class="votes">
+		Votos
+		{{input type="number" value=status.votes.votes}}
+	</div> 
+	<div class="percent">
+		Porcentaje
+		{{input type="text" value=status.votes.percent pattern="\d+(,\d{2})?"}}
+	</div>     
+	<a {{action 'removeProvincia' formula status}}>X</a>
+</fieldset> 
+{{/each}} 

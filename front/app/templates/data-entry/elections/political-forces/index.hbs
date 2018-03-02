@@ -1,0 +1,41 @@
+<section>
+  <div class="section-header">
+    <h1>Partidos políticos</h1>
+    {{link-to "Agregar partido" "data-entry.elections.political-forces.new" classNames="btn"}}
+  </div>
+  <div class="section-content">
+    <div class="search-form">
+      <label>
+        Pais
+      </label>
+      {{model-selector modelName='country' value=country optionLabelPath="content.name" }}
+
+      <a {{action 'search'}} class="action">
+        {{fa-icon "search"}}
+      </a>
+    </div>  
+    {{#if model.length}}
+      <div class="slat-list">
+        {{#each politicalForce in model}}
+          <div class="slat-item -color">
+            <div class="palet-color">
+              {{{color-div politicalForce.color}}}
+            </div>
+            <div class="slat-content">
+              <h4>{{politicalForce.name}}</h4>
+            </div>
+            <div class="slat-action">
+              {{link-to "Editar" "data-entry.elections.political-forces.edit" politicalForce classNames="btn"}}
+              <a href="#" class="btn" {{action "remove" politicalForce}}>Eliminar</a>
+            </div>
+          </div>
+        {{/each}}
+        {{infinity-loader infinityModel=model}}
+      </div>
+    {{else}}
+      <div class="loading">
+        {{loading-bubbles color='#0083ff' size=100}}
+      </div>
+    {{/if}}
+  </div>
+</section>

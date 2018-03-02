@@ -1,0 +1,330 @@
+$mobile: new-breakpoint(max-width 800px 6);
+$phone: new-breakpoint(max-width 500px 4);
+
+.welcome-friend {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 2001;
+	height: 100vh;
+
+    &.-about, &.-contact {
+		max-width: 1160px;
+		margin: 0 auto;
+		height: auto;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		width: 100%;
+		padding: 40px 15px 25px;
+		background: #fff;
+		background-image: url("/assets/images/back-map.svg");
+		background-size: 12%;
+
+    @include media($phone) {
+				padding: 120px 15px 25px;
+			}
+    }
+
+    img {
+    	height: 350px;
+    }
+
+    .contact-form {
+	    padding: 25px;
+
+
+	}
+}
+
+.-about {
+
+
+	
+
+	.intro-about {
+		p {
+			font-size: 20px;
+			line-height: 36px;
+			color: #777;
+			padding: 0 75px 25px 75px;
+			text-align: center;
+
+			@include media($phone) {
+				font-size: 16px;
+				line-height: 20px;
+				padding: 0 25px 25px 25px;
+			}
+		}
+	}
+
+	.members,
+	.about-board {
+		p {
+			font-size: 20px;
+			line-height: 36px;
+			color: #777;
+			padding: 0 75px 70px 75px;
+			text-align: center
+		}
+	}
+
+}
+
+.members, .about-member {
+	padding: 0 2em;
+
+	.card {
+		width: 210px !important;
+
+		.content {
+			height: auto !important;
+			text-align: center;
+		}
+	}
+
+	.comite-academico {
+		.header {
+			font-size: 18px !important;
+		}
+	}
+
+	.director {
+	}
+
+	.subdirector {
+
+	}
+}
+
+
+.content {
+	&.-admin {
+
+		margin-left: 0;
+
+		.country-menu {
+			-webkit-transform: translate-200pxd(0, 0, 0);
+			transform: translate3d(-200px, 0, 0);
+		}
+	}
+}
+
+
+.country-menu {
+    position: fixed;
+    overflow: hidden;
+    left: 0;
+    width: 100%;
+    background: #2980b9;
+    z-index: 1;
+    top: 80px;
+    bottom: 0;
+    right: 0;
+    height: 65px;
+    @include transition(all 0.4s cubic-bezier(0.7,0,0.3,1));
+
+	@include media($mobile) {
+		top: 80px;
+	}
+
+	$phone: new-breakpoint(max-width 500px 4);
+
+	@include media($phone) {
+		top: 120px;
+		height: 0;
+	}
+
+	&.show {
+		height: 60px;
+	}
+
+	ul {
+	    padding: 0;
+	    margin: 0;
+	    @include outer-container(100%);
+	    max-width: 1000px;
+	}
+
+	li {
+	    width: 10%;
+	    padding: 10px 0;
+	    float: left;
+	    opacity: 0.5;
+	    @include transition(all 0.4s cubic-bezier(0.7,0,0.3,1));
+
+    	&.active,
+    	&:hover {
+	    	opacity: 1;
+	    }
+	}
+
+	a {
+	    float: left;
+	    width: 100%;
+	    padding: 5px 25px;
+	}
+
+	img {
+		position: relative;
+		display: block;
+		margin: 0 auto;
+	}
+
+	span {
+		position: relative;
+		display: block;
+	}
+}
+
+.toogle-country {
+	display: none;
+    position: fixed;
+    top: 19px;
+    left: 15px;
+    font-size: 30px;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    @include media($phone) {
+		display: block;
+	}
+
+	&:hover,
+	&:focus {
+		color: #333;
+	}
+}
+
+.brief-container {
+
+	ul {
+		padding: 0;
+		margin: 0;
+		@include outer-container(100%);
+	}
+
+	.card {
+		float: left;
+		width: 22%;
+	}
+
+	li {
+		   
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+
+			img {
+position: relative;
+display: block;
+margin: 0 auto;
+	}
+	}
+}
+
+
+.participation {
+
+	float: left; 
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+
+	.vote {
+		@include span-columns(6);
+	}
+
+	.percent {
+		@include span-columns(6);
+	}
+}
+
+
+
+#intro {
+	.slat-title {
+		display: none;
+	}
+
+	.slat-content {
+		padding: 0;
+	}
+}
+
+.full-width {
+	height: 300px; margin: 0 auto; width: 600px; padding: 60px
+}
+
+.flag {
+
+	img {
+		width: 100%;
+	}
+
+	&.-brief {
+		    display: block;
+    width: 150px;
+    margin: 0 auto;
+
+		
+	}
+
+	&.-detail {
+
+		display: block;
+		width: 350px;
+
+	}
+}
+
+
+.card {
+	h4, h5, p {
+		margin: 0;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+
+	h4 {
+		    line-height: 28px;
+    margin: 5px 0 0 0;
+	}
+
+	h5 {
+		line-height: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 15px 0 0 0;
+    text-align: left;
+	}
+}
+
+.action-bar {
+	position: fixed; 
+	left: 200px;
+	top: 0;
+	right: 0;
+	height: 55px;
+	padding: 5px;
+	background: #f9f9f9;
+	z-index: 2;
+
+	h5 {
+		margin: 10px 15px;
+		font-size: 23px;
+	}
+}
+
+
+

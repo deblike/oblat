@@ -1,0 +1,78 @@
+<section>
+  <div class="section-header">
+    <h1>Candidatos</h1>
+   {{link-to "Agregar candidato" "data-entry.elections.candidates.new" classNames="btn"}}
+  </div>
+<div class="section-content">
+    <div class="search-form">
+      <label class="item">
+        Pais
+        {{model-selector modelName='country' value=country optionLabelPath="content.name" }}
+      </label>
+      <a {{action 'search'}} class="action">
+        {{fa-icon "search"}}
+      </a>
+    </div>  
+{{#if model.length}}
+  <table class="table-minimal">
+    <thead>
+      <tr>
+        <th>
+          
+        </th>
+        <th>
+          Nombre apellido
+        </th>
+        <th>
+          Alias
+        </th>    
+        <th>
+          Pais
+        </th>        
+        <th colspan="3">
+          
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each candidate in model}}
+        <tr>
+          <td>
+            {{#if candidate.picture.url}}
+              <div class="img-container -candidates">
+                <img {{bind-attr src=candidate.picture.url}} width="50px">
+              </div>
+            {{/if}}  
+            
+          </td>
+          <td>
+            	{{candidate.name}} {{candidate.lastName}}
+          </td>
+          <td>
+            {{candidate.alias}}
+          </td>
+          <td>
+            {{candidate.country.name}}
+          </td>  
+          <td>
+            {{candidate.charge.name}}
+          </td> 
+          <td>
+           {{candidate.election.name}}
+          </td>         
+          <td>
+            {{link-to "Editar" "data-entry.elections.candidates.edit" candidate}}
+            <a href="#" {{action "remove" candidate}}>Eliminar</a>
+          </td>
+        </tr>
+      {{/each}}
+      {{infinity-loader infinityModel=model}}
+    </tbody>
+  </table>
+{{else}}
+  <p id="blankslate">
+    No candidates found
+  </p>
+{{/if}}
+</div>
+</section>

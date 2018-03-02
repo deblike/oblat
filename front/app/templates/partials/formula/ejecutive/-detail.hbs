@@ -1,0 +1,41 @@
+<div class="ejecutive-detail">
+  <div class="brief-header">
+    <h5>{{formula.politicalForce.name}}
+    </h5>
+    <div class="votes">
+      <span>{{formula.percent}}%</span> <br>
+      <small>{{format-number formula.votes format="0.0"}} </small>
+    </div>
+  </div>
+
+  <div class="brief-content">
+    <div class="candidate-container">
+    {{#each formula.candidates as |candidate|}}
+        <div class="candidate-item">
+          {{#if candidate.candidate.picture.url}}
+            <div class="image">
+              <img {{bind-attr src=candidate.candidate.picture.url}} width="70px">
+            </div>
+          {{/if}}  
+          <h5 style="margin: 0;font-size: 20px; padding: 15px 0;"> {{candidate.candidate.name}} {{candidate.candidate.lastName}} <br> <small>{{candidate.charge.name}}</small></h5>
+        </div>
+    {{/each}}
+    </div>
+
+    {{#each formula.provinceStatuses as |status|}}
+      <div class="brief-item">
+        <div class="item-name">
+          <!-- Provincia | Estado   Select Obligatoria | Opcional -->
+          {{status.province.name}}
+        </div>
+        <div class="item-votes">
+          {{format-number status.votes.votes format="0.0"}}
+          <small>Votos</small>
+        </div>
+        <div class="item-percent">
+        {{status.votes.percent}}%
+        </div>
+      </div>
+    {{/each}}   
+  </div>
+</div>

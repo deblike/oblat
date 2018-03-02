@@ -1,0 +1,98 @@
+<div class="hero">
+	<div class="hero-inner">
+    	<div class="hero-logo">
+    		{{#if model.country.flag.url}}
+		        <div class="img-container">
+		          <img {{bind-attr src=model.country.flag.url}}>
+		        </div>
+		     {{/if}}
+		</div>
+		<div class="hero-copy">
+			<h1>{{model.name}}</h1>
+			<h2>{{model.fixDate}}</h2>
+			
+			<div class="stats">
+			  <p>
+				Elección {{model.level.name}} {{model.type.name}} <br>
+				<i> {{model.instance.name}} {{model.category.name}} {{model.participation.name}}</i>
+				{{#if isLegislative}}
+					{{model.cameraType.name}} 
+					Bancas en juego {{model.banks}}
+				{{/if}}
+				{{#if isReferendum}}
+					{{#if model.vinculated}}
+						Vinculada
+					{{else}}
+						No Vinculada
+					{{/if}}
+				{{/if}}
+			  </p>
+			
+			 
+			</div>
+			<p>{{link-to "Todas las elecciones" "data-entry.elections.elections.index" classNames="btn"}}</p>
+		</div>
+    	
+	</div>
+</div>
+
+<div class="profile-content">
+		
+		<div class="profile-data">
+			<h4>Datos</h4>
+			<div class="data-item">
+				<label for="">Electores</label> {{model.electors}}
+			</div>
+			<div class="data-item">
+				<label for="">Votantes</label> {{model.voters}} ({{model.votersPercent}}%)
+			</div>
+			<div class="data-item">
+				<label for="">Nulos</label> {{model.nulls}} ({{model.nullsPercent}}%)
+			</div>
+			<div class="data-item">
+				<label for="">Positivos</label> {{model.positives}} ({{model.positivesPercent}}%)
+			</div>
+			<div class="data-item">
+				<label for="">Blancos</label> {{model.blank}} ({{model.blanksPercent}}%)
+			</div>
+			<div class="data-item">
+				<label for="">Validos</label> {{model.valids}} ({{model.validsPercent}}%)
+			</div>
+			<div class="data-item">
+				<label for="">Abstenciones</label> {{model.abstens}} ({{model.abstensPercent}})
+			</div>
+
+			{{#if model.unchecked}}			
+			<div class="data-item">
+				<label for="">Sin marcar</label> {{model.unchecked}} ({{model.uncheckedPercent}})
+			</div>				
+			{{/if}}
+		</div>
+
+		<div class="profile-results">
+			<h4>Referencia</h4>
+			<p>{{model.history}}</p>
+			<h4>
+			{{#if isEjecutive}}
+				Resultados
+            {{/if}}
+	        {{#if isLegislative}}
+				Resultados
+            {{/if}}
+			{{#if isReferendum}}
+				Propuesta
+			{{/if}}	
+			</h4>
+			{{#each model.formulas as |formula|}}
+			      {{#if isEjecutive}}
+			        {{partial 'data-entry/elections/elections/formulas/ejecutive-brief'}}
+			      {{/if}}
+			      {{#if isLegislative}}
+			        {{partial 'data-entry/elections/elections/formulas/legislative-brief'}}
+			      {{/if}}
+			      {{#if isReferendum}}
+			        {{partial 'data-entry/elections/elections/formulas/referendum-brief'}}
+			      {{/if}}			
+			{{/each}}
+		</div>
+	</div>

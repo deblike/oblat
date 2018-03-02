@@ -1,0 +1,260 @@
+{{#if session.isAuthenticated}}
+	<nav {{bind-attr class=":change-app-container isShowApps:is-visible"}}>
+		<ul>
+			<li {{bind-attr class="isHome:active"}}>
+				{{#link-to 'index'}} 
+					{{fa-icon "home"}}
+					<span>Inicio</span>
+				{{/link-to}}
+			</li>		
+
+			{{#if (can 'view admin')}}
+			<li {{bind-attr class="isAdmin:active"}} >
+				{{#link-to 'admin.users.index'}} 
+					{{fa-icon "wrench"}}
+					<span>Administración</span>
+				{{/link-to}}
+			</li>
+			{{/if}}
+			{{#if (can 'view data-entry')}}
+			<li {{bind-attr class="isDataEntry:active"}} >
+				{{#link-to 'data-entry.elections.countries.index'}} 
+					{{fa-icon "user-plus"}}
+					<span>Manejo de datos</span>
+				{{/link-to}}
+			</li>
+			{{/if}}
+		</ul>
+	</nav> <!-- .change-app-container -->
+
+	
+
+	<header {{bind-attr class="isShowApps:is-visible isHome:-home isDataEntry:-admin isAdmin:-admin"}}>
+		{{#if isAdmin}}
+			<button class="logo" {{action 'toggleApps' target="view"}}>
+				<img src="assets/images/observatorio-logo.svg">
+			</button>
+			<h3>Administración</h3>
+			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
+				{{fa-icon "bars"}}
+			</button>
+		{{/if}}
+
+		{{#if isShowApps}}
+			<a class="log-out" {{ action 'invalidateSession' }}>
+				<span>Cerrar sesión</span> {{fa-icon "sign-out"}}
+			</a>
+		{{/if}}	
+
+		{{#if isDataEntry}}
+			<button class="logo" {{action 'toggleApps' target="view"}}>
+				<img src="assets/images/observatorio-logo.svg">
+			</button>
+			<h3>Manejo de datos</h3>
+			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
+				{{fa-icon "bars"}}
+			</button>
+		{{/if}}
+	</header>
+
+
+
+	<div {{bind-attr class=":menu-wrap isShowMenu:show isData:-data isHome:-home isDataEntry:-admin isRed:-red isCalendar:-calendar isAdmin:-admin"}}> 
+		<div class="menu-nav fa-ul">
+			{{#if session.isAuthenticated}}
+				{{#if isAdmin}}
+					<ul>
+					{{#if (can 'view admin')}}
+					<li>
+					{{#link-to 'admin.users.index'}} {{fa-icon "user"}} <span>Usuarios</span> {{/link-to}}
+					</li>
+					<li>
+					{{#link-to 'admin.roles.index'}} {{fa-icon "sliders"}} <span>Roles</span> {{/link-to}}
+					</li>
+					<li>
+					{{#link-to 'admin.election-categories.index'}} {{fa-icon "sliders"}} <span>Categoría de elecciones</span> {{/link-to}}
+					</li>
+					<li>
+					{{#link-to 'admin.election-instances.index'}} {{fa-icon "sliders"}} <span>Instancias de elecciones</span> {{/link-to}}
+					</li>									
+					<li>
+					{{#link-to 'admin.political-alines.index'}} {{fa-icon "sliders"}} <span>Alineaciones Politicas</span> {{/link-to}}
+					</li>				
+					<li>
+					{{#link-to 'admin.camera-types.index'}} {{fa-icon "sliders"}} <span>Tipo de Cámaras</span> {{/link-to}}
+					</li>		
+					<li>
+					{{#link-to 'admin.election-participations.index'}} {{fa-icon "sliders"}} <span>Participación</span> {{/link-to}}
+					</li>													
+					{{/if}}	
+					</ul>				
+				{{/if}}	
+				{{#if isDataEntry}}
+					{{#simple-accordion title="Datos"  tagName="ul"}}
+						<li>
+							{{#link-to 'data-entry.elections.countries.index'}} {{fa-icon "flag"}} <span>País</span> {{/link-to}}
+						</li>
+						<li>
+							{{#link-to 'data-entry.elections.provinces.index'}} {{fa-icon "university"}} <span>Provincias</span> {{/link-to}}
+						</li>						
+						<li>
+							{{#link-to 'data-entry.elections.charges.index'}} {{fa-icon "briefcase"}} <span>Cargos</span> {{/link-to}}
+						</li>																							
+						<li>
+							{{#link-to 'data-entry.elections.candidates.index'}} {{fa-icon "user"}} <span>Candidatos</span> {{/link-to}}
+						</li>		
+						<li>
+							{{#link-to 'data-entry.elections.reports.index'}} {{fa-icon "user"}} <span>Reportes</span> {{/link-to}}
+						</li>		
+
+					{{/simple-accordion}}
+
+					{{#simple-accordion title="Elecciones" tagName="ul"}}
+						<li>
+							{{#link-to 'data-entry.elections.election-levels.index'}} {{fa-icon "copy"}} <span>Nivel de elecciones</span> {{/link-to}}
+						</li>
+						
+						<li>
+							{{#link-to 'data-entry.elections.election-types.index'}} {{fa-icon "columns"}} <span>Tipo de elecciones</span> {{/link-to}}
+						</li>
+							
+						<li>
+							{{#link-to 'data-entry.elections.political-forces.index'}} {{fa-icon "file"}} <span>Fuerza politica</span> {{/link-to}}
+						</li>
+						<li>
+							{{#link-to 'data-entry.elections.elections.index'}} {{fa-icon "th-large"}} <span>Elecciones</span> {{/link-to}}
+						</li>
+					{{/simple-accordion}}
+				{{/if}}		
+			{{/if}}
+		</div>
+
+		<ul class="menu-bottom">
+			<li>
+				<a {{ action 'invalidateSession' }}>
+					Salir {{fa-icon "sign-out"}}
+				</a>
+			</li>
+		</ul>
+	</div><!-- main-nav-wrap -->
+{{/if}}
+
+
+
+{{#unless isAdmin}}
+	{{#unless isDataEntry}}
+		<header {{bind-attr class=":welcome isHome:-home isDataEntry:-admin isAdmin:-admin isReport:-report"}}>
+				<div class="container-header">
+					<div class="logo-home">
+						{{#link-to 'index'}}
+							<img src="assets/images/logo-oblat.svg">
+						{{/link-to}}
+					</div>
+
+					<nav>
+						<ul>
+							<li>
+								{{#link-to 'about'}}Quienes somos{{/link-to}}
+							</li>
+							<li>
+								{{#link-to 'reports.index'}}Informes{{/link-to}}
+							</li>
+						
+							<li>
+								{{#link-to 'contact'}}Contacto{{/link-to}}
+							</li>
+							
+							{{#if session.isAuthenticated}}
+								{{#if (can 'view data-entry')}}							
+									<li>
+										{{#link-to 'data-entry'}} 
+											Manejo de Datos
+										{{/link-to}}
+									</li>
+								{{/if}}
+								{{#if (can 'view admin')}}							
+									<li>
+										{{#link-to 'admin.users.index'}} 
+											Administrador
+										{{/link-to}}
+									</li>
+								{{/if}}
+
+								<li>
+									<a {{ action 'invalidateSession' }}>
+										Salir {{fa-icon "sign-out"}}
+									</a>
+								</li>
+							{{else}}
+							<li>
+								{{#link-to 'login'}} 
+									{{fa-icon 'lock'}}
+								{{/link-to}}
+							</li>
+							{{/if}}
+						</ul>
+					</nav>
+				</div>
+				<div {{bind-attr class=":country-menu isShowCountry:show"}}>
+				<ul>
+				{{#each model.countries as |country|}}
+					{{country-flag country=country selected=model.country}}
+				{{/each}}
+				</ul>
+				<button {{action 'toggleCountry' target="view"}} class="toogle-country" style="position: fixed;">
+					{{fa-icon 'globe'}}
+				</button>
+				
+			</div>
+		</header>
+	{{/unless}}
+{{/unless}}
+<div {{bind-attr class=":content isHome:-home isShowMenu:show isShowApps:is-visible isDataEntry:-admin isAdmin:-admin"}}>
+	{{#if isDataEntry}}
+		{{liquid-outlet}}
+	{{else}}
+		{{#if isAdmin}}
+			{{liquid-outlet}}
+		{{else}}
+			{{#unless isHome}}
+				{{#if model.country}}
+					{{pixel-map class="pixel-map" countries=model.countries}}
+				{{/if}}
+			{{else}}
+				{{pixel-map class="pixel-map" countries=model.countries}}
+				<ul class="home-report-list">
+					<h2 style="border-bottom: 1px solid #333; padding-bottom: 13px;margin: 10px 0 0 0;">Últimos informes
+					{{#link-to 'reports' class="heading-link"}}ver todos{{/link-to}}
+					</h2>
+					{{#each model.reports as |report|}}
+					<li class="report-item">
+						<div class="img">
+				 			<img src="{{report.picture.url}}" alt="" style="width: 150px; height: auto;">
+				 		</div>
+				 		<div class="item-data">
+						<h4 class="title">
+							{{#link-to 'reports.show' report}}
+								{{report.title}}
+							{{/link-to}}
+						</h4>
+						<p class="excerpt">
+							{{#link-to 'reports.show' report class="read-more"}}Leer más <span>&rsaquo;</span>{{/link-to}}
+						</p>
+						</div>
+					</li>
+					{{/each}}
+				</ul> 
+			{{/unless}}
+			{{liquid-outlet}}
+		{{/if}}
+	{{/if}}
+	{{#if isHome}}
+	<footer>
+		<img src="/assets/images/footer.png" alt="">
+	</footer>
+	{{/if}}
+</div>
+
+
+
+

@@ -1,0 +1,36 @@
+<section>
+  <div class="section-header">
+    <h1>Paises</h1>
+    {{link-to "Agregar país" "data-entry.elections.countries.new" classNames="btn"}}
+  </div>
+  <div class="section-content">
+    {{#if model.length}}
+      <div class="slat-list ">
+        {{#each country in model}}
+          <div class="slat-item -image">
+            <div class="slat-img">
+              {{#if country.flag.url}}
+                <div class="img-container -country">
+                  <img {{bind-attr src=country.flag.url}} width="50px">
+                </div>
+              {{/if}} 
+            </div>
+            <div class="slat-content">
+                         
+              <h4>{{country.name}}</h4>
+            </div>
+            <div class="slat-action">
+              {{link-to "Editar" "data-entry.elections.countries.edit" country classNames="btn"}}
+              <a href="#" class="btn" {{action "remove" country}}>Eliminar</a>
+            </div>
+          </div>
+        {{/each}}
+        {{infinity-loader infinityModel=model}}
+      </div>
+    {{else}}
+      <div class="loading">
+        {{loading-bubbles color='#0083ff' size=100}}
+      </div>
+    {{/if}}
+  </div>
+</section>

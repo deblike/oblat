@@ -1,0 +1,61 @@
+ <div class="field-container">
+  <fieldset>
+    <label>
+      Propuesta
+      {{input type="text" value=formula.proposal}}
+    </label>
+  </fieldset>
+
+
+  <fieldset class="election-poll">
+    <label>
+       Votos SI
+    </label>
+    <div class="quantity">
+      {{input type="number" value=formula.positiveVotes.votes placeholder="Ingrese la cantidad"}}
+    </div>
+    <div class="percent">
+     {{input type="text" value=formula.positiveVotes.percent placeholder="Ingrese el porcentaje" pattern="\d+(,\d{2})?"}}
+     </div>
+  </fieldset>   
+
+  <fieldset class="election-poll">
+    <label>
+       Votos No
+    </label>
+    <div class="quantity">
+      {{input type="number" value=formula.negativeVotes.votes placeholder="Ingrese la cantidad"}}
+    </div>
+    <div class="percent">
+      {{input type="text" value=formula.negativeVotes.percent placeholder="Ingrese el porcentaje" pattern="\d+(,\d{2})?"}}
+    </div>
+  </fieldset>   
+
+  <a {{action 'addProvince' formula}} class="btn">Agregar Provincia</a>
+  {{#each formula.provinceStatuses as |status|}}
+  <fieldset class="province-poll"> 
+    <label>
+      {{#if status.isCustom}} 
+        {{model-selector modelName='province' countryFilter=model.country.id  list=status.province value=status.province optionLabelPath="content.name" }}
+      {{else}}
+        {{status.province.name}}
+      {{/if}}
+    </label>
+    <div class="votes">
+      Votos Si
+      {{input type="number" value=status.positiveVotes.votes}}
+    </div> 
+    <div class="percent">
+      {{input type="text" value=status.positiveVotes.percent pattern="\d+(,\d{2})?"}}
+    </div>     
+    <div class="votes">
+      Votos No
+      {{input type="number" value=status.negativeVotes.votes}}
+    </div> 
+    <div class="percent">
+      {{input type="text" value=status.negativeVotes.percent pattern="\d+(,\d{2})?"}}
+    </div>     
+    <a {{action 'removeProvincia' formula status}}>X</a>
+  </fieldset> 
+  {{/each}} 
+</div>

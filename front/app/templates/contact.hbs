@@ -1,0 +1,33 @@
+<div class="welcome-friend -contact">
+	
+	<div class="section-content">
+		<form class="create-event contact-form">
+			<fieldset>
+				<h2 style="margin: 0;">Contactanos</h2>
+			</fieldset>
+			<fieldset style="width: 48%;float: left; padding: 1em 0 0 0;">
+				<label>
+					Nombre
+					{{input type="text" placeholder="..."}}
+				</label>
+			</fieldset>
+			<fieldset style="width: 48%;float: right; padding: 1em 0 0 0;">
+				<label>
+					Mail
+					{{input type="text" placeholder="..."}}
+				</label>
+			</fieldset>
+			<fieldset style="width: 100%;float: right;">
+				<label>
+					Mensaje
+					{{textarea type="text" value=model.history}}
+				</label>
+			</fieldset>
+			<fieldset>
+				<input type="submit" value="Enviar">
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{{outlet}}

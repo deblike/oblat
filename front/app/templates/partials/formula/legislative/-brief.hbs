@@ -1,0 +1,21 @@
+<div class="legislative-item -brief">
+	<div class="item-title">
+		<h5>{{formula.politicalForce.name}}</h5>
+		<p>{{#if election.isDiputies}}
+		Diputados
+	{{else}}
+		{{#if election.isSenators}}
+			Senadores
+		{{else}}
+			Asambleistas
+		{{/if}}
+	{{/if}}</p>
+	</div>
+
+	<div class="item-content">	
+		<div class="item">
+			{{formula.assemblyman.percent}}%
+			<small>{{format-number formula.assemblyman.votes format="0.0"}}</small>
+		</div>
+	</div> 
+</div> 	
